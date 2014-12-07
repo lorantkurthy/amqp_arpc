@@ -1,5 +1,5 @@
--ifndef(AMQP_MRPC_HRL).
--define(AMQP_MRPC_HRL, true).
+-ifndef(AMQP_ARPC_HRL).
+-define(AMQP_ARPC_HRL, true).
 
 -include_lib("amqp_client/include/amqp_client.hrl").
 
