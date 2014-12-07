@@ -48,15 +48,7 @@ test_worker module:
 -behaviour(gen_server).
 -behaviour(amqp_arpc_server_worker_behaviour).
 
-%% ------------------------------------------------------------------
-%% API Function Exports
-%% ------------------------------------------------------------------
-
 -export([start_link/1,request/3]).
-
-%% ------------------------------------------------------------------
-%% gen_server Function Exports
-%% ------------------------------------------------------------------
 
 -export([init/1, handle_call/3, handle_cast/2, handle_info/2,
          terminate/2, code_change/3]).
@@ -64,19 +56,11 @@ test_worker module:
 -record(state,{
 }).
 
-%% ------------------------------------------------------------------
-%% API Function Definitions
-%% ------------------------------------------------------------------
-
 start_link([]) ->
     gen_server:start_link(?MODULE, [], []).
 
 request(WorkerPid,Payload,ReplyFun) ->
     gen_server:cast(WorkerPid,{rpc,Payload,ReplyFun}).
-
-%% ------------------------------------------------------------------
-%% gen_server Function Definitions
-%% ------------------------------------------------------------------
 
 init(_Args) ->
     process_flag(trap_exit, true),
@@ -102,10 +86,6 @@ terminate(_Reason, _State) ->
 
 code_change(_OldVsn, State, _Extra) ->
     {ok, State}.
-
-%% ------------------------------------------------------------------
-%% Internal Function Definitions
-%% ------------------------------------------------------------------
 
 handle_request(Payload) ->
     {hello,Payload}.
